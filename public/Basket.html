@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+ <html lang="ru">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Sofa</title>
+     <link rel="stylesheet" href="Sofa.css">
+     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+ </head>
+ <body>
+
+ <header>
+    <div class="header-content">
+        <div style="display: flex; align-items: center;">
+            <div class="logo-group">
+                <img src="assets/rose.jpeg" alt="Логотип" class="logo-image" 
+                style="width: 80px; height: auto; margin-right: 20px;">
+                <div class="logo" style="margin-right: 20px;">Sofa</div>
+            </div>
+            <div class="buttons" style="display: flex; align-items: center; margin-right: auto;">
+                <a href="/public/User.html">Главная</a>
+                <a href="/public/Profile.html">Профиль</a>
+                <a style="color:black; margin-right: 15px; border-bottom: 2px solid #9c131d;">Заказы</a>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <div class="dropdown" style="position: relative;">
+                <button id="DropdownMenu" class="dropdown-button">Меню</button>
+                <div id="dropdownMenu" class="dropdown-content" style="display: none;">
+                    <a @click.prevent="openExitModal" style="margin-right: 15px;">Выход</a>
+                    <a href="/public/User.html">Текущий тираж</a>
+                    <a href="/public/User.html">Избранное</a>
+                    <a href="/public/User.html">Новинки</a>
+                    <a href="/public/User.html">Каталог</a>
+                    <a href="/public/User.html">Оплата</a>
+                    <a href="/public/User.html">Доставка</a>
+                </div>
+            </div>  
+            <div>
+                <div style="position: relative; display: inline-block;">
+                    <img src="assets/SearchIcon.png" alt="Поиск" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px;">
+                    <input type="text" id="searchInput" placeholder="Поиск..." style="padding-left: 30px;"/>
+                </div>
+            </div>
+        </div>
+        <a id="menuToggle" class="menu-button">Меню</a>
+    </div>
+</header>
+ 
+ <aside id="sidebar" class="sidebar">
+     <nav>
+         <a href="/public/User.html">Назад</a>
+         <a >Новинки</a>
+         <a >Каталог</a>
+         <a >Текущий тираж</a>
+         <a >Профиль</a>
+         <a >Заказы</a>
+         <a >Избранное</a>
+         <a >Оплата</a>
+         <a >Доставка</a>
+     </nav>
+ </aside>
+ 
+ <div id="notifications" class="notifications"></div>
+ 
+ <main>
+     <div id="app">
+         <h2>Корзина</h2>
+         <div id="basket-items" class="symbols-container"></div> <!-- Обновленный класс для контейнера -->
+     </div>
+ </main>
+ 
+ 
+ <footer>
+     <p>&copy; 2025 Sofa. Все права защищены.</p>
+ </footer>
+ <script src="scripts/Basket.js"></script>
+ </body>
+ </html>

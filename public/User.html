@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofa</title>
+    <link rel="stylesheet" href="Sofa.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+<div id="app">
+    <div id="notifications" class="notifications"></div>
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center;">
+                <div class="logo-group">
+                    <img src="assets/rose.jpeg" alt="Логотип" class="logo-image" 
+                    style="width: 80px; height: auto; margin-right: 20px;">
+                    <div class="logo" style="margin-right: 20px;">Sofa</div>
+                </div>
+                <div class="buttons" style="display: flex; align-items: center; margin-right: auto;">
+                    <a style="color:black; margin-right: 15px; border-bottom: 2px solid #9c131d;">Главная</a>
+                    <a href="/public/Profile.html">Профиль</a>
+                    <a href="/public/Basket.html">Заказы</a>   
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="dropdown" style="position: relative;">
+                    <button id="DropdownMenu" class="dropdown-button">Меню</button>
+                    <div id="dropdownMenu" class="dropdown-content" style="display: none;">
+                        <a @click.prevent="openExitModal" style="margin-right: 15px;">Выход</a>
+                        <a class="highlighted">Текущий тираж</a>
+                        <a >Избранное</a>
+                        <a >Новинки</a>
+                        <a >Каталог</a>
+                        <a >Оплата</a>
+                        <a >Доставка</a>
+                    </div>
+                </div> 
+                <div>
+                    <div style="position: relative; display: inline-block;">
+                        <img src="assets/SearchIcon.png" alt="Поиск" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px;">
+                        <input type="text" id="searchInput" placeholder="Поиск..." style="padding-left: 30px;"/>
+                    </div>
+                    
+                </div>
+            </div>
+            <a id="menuToggle" class="menu-button">Меню</a>
+        </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+        <nav>
+            <a style="text-decoration: underline; color:black"><b>Главная</b></a>
+            <a href="/public/Profile.html">Профиль</a>
+            <a>Избранное</a>
+            <a href="/public/Basket.html">Заказы</a>
+            <a @click.prevent="openExitModal">Выход</a>
+            <a >Новинки</a>
+            <a >Каталог</a>
+            <a >Текущий тираж</a>
+            <a >Профиль</a>
+            <a >Заказы</a>
+            <a >Избранное</a>
+            <a >Оплата</a>
+            <a >Доставка</a>
+        </nav>
+    </aside>
+    <div id="notifications" class="notifications"></div>
+    <main>
+        <div class="main-elements">
+            <h1 class="main-big-text">Sofa: Магазин для художников</h1>
+            <img src="assets/Catto.png" class="main-big-img" style="border-radius: 15px; height: 33vh;">
+        </div>
+
+        <section id="how-to-order">
+            <h1 >Создайте мерч в одной из сотен выбранных типографий на Тао Бао и 1688</h1>
+            <h1 style="font-size: 2em; padding-top: 50px;">Как заказать?</h1>
+            <div class="order-steps">
+                <div class="order-step">
+                    <img src="assets/Select_the_product.gif" alt="Шаг 1" />
+                    <p>1. Выберите товар</p>
+                </div>
+                <div class="order-step">
+                    <img src="assets/Upload_the_layout.gif" alt="Шаг 2" />
+                    <p>2. Загрузите макет</p>
+                </div>
+                <div class="order-step">
+                    <img src="assets/Get_the_merch.gif" alt="Шаг 3" />
+                    <p>3. Получите мерч</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin: 30px;">
+            <div class="horiz-button-menu">
+                <button @click.prevent="openUserModal">Доставка</button>
+                <div class="spacer-button">
+                    <button @click.prevent="openUserModal">Оплата</button>
+                </div>
+                <button @click.prevent="openUserModal">Контакты</button>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin: 20px;">
+            <h2 style="vertical-align: middle;">Популярное</h2>
+            <button @click.prevent="openUserModal">Каталог ></button>
+        </div>
+
+        <div id="symbols-container" class="symbols-container">
+            <div v-for="good in goods" :key="good.id" class="card">
+                <div class="card-body"> 
+                    <img :src="good.photo" :alt="good.name" class="card-image" />
+                    <h2 class="card-title">{{ good.name }}</h2>
+                    <p class="card-price">{{ good.price }} ₽</p>
+                </div>
+                <button @click.prevent="openProductModal(good)">В корзину</button>
+            </div>
+        </div>
+
+        <button @click="toggleChatbot" class="chatbot-toggle-button" v-show="!isChatbotVisible">Чат с ботом</button>
+    
+        <div id="chatbot" class="chatbot" v-show="isChatbotVisible">
+            <div class="chatbot-header">
+                <h2>Чат с ботом</h2>
+                <span class="close" @click="toggleChatbot">&times;</span>
+            </div>
+            <div class="chatbot-messages" ref="messages">
+                <div v-for="message in messages" :key="message.id" :class="{'user-message': message.user, 'bot-message': !message.user}">
+                    {{ message.text }}
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" v-model="userInput" @keyup.enter="sendMessage" placeholder="Введите сообщение..."/>
+                <button style="padding: 12px 10px;" @click="sendMessage">Отправить</button>
+            </div>
+        </div>  
+
+        <div v-if="isExitModalOpen" class="modal" @mousedown="handleMouseDown" @mouseup="handleMouseUp"> 
+            <div class="modal-content" @click.stop>
+                <span class="close" @click="closeExitModal">&times;</span>
+                <h2>Выход</h2>
+                <form id="ExitForm" @submit.prevent="submitExitForm">
+                    <p>Вы действительно хотите выйти?</p>
+                    <button type="submit">Подтвердить</button>
+                </form>
+            </div>
+        </div>
+        
+        <div v-if="isProductModalOpen" class="modal" @mousedown="handleMouseDown" @mouseup="handleMouseUp"> 
+            <div class="modal-content" @click.stop>
+                <span class="close" @click="closeProductModal">&times;</span>
+                <h2>{{ selectedProduct.name }}</h2>
+                <p>Описание: {{ selectedProduct.description }}</p>
+                <p>Минимальное количество для заказа: {{ selectedProduct.min_order_quantity }}</p>
+                <p>Шаг: {{ selectedProduct.multiplicity }}</p>
+                <p>Цена: {{ selectedProduct.price }} ₽</p>
+            
+                <label for="quantity">Количество:</label>
+                <input type="number" id="quantity" v-model="quantity" 
+                       :min="selectedProduct.min_order_quantity" 
+                       :step="selectedProduct.multiplicity" />                
+            
+                <!-- Поля для товаров, где нужен макет -->
+                <div v-if="selectedProduct.need_maket">
+                    <label for="maket_format">Формат макета: ({{ selectedProduct.maket_format }}):</label>
+                    <input type="file" accept=".jpg, .png" @change="checkFileFormat($event, selectedProduct)" />
+                </div>
+                
+                <button @click="addToCart">Добавить в корзину</button>
+            </div>
+        </div>
+                
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sofa. Все права защищены.</p>
+    </footer>
+    <script src="scripts/User.js"></script>
+</div>
+</body>
+</html>

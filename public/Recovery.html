@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofa</title>
+    <link rel="stylesheet" href="Sofa.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+<div id="app">
+    <div id="notifications" class="notifications"></div>
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center;">
+                <div class="logo-group">
+                    <img src="assets/rose.jpeg" alt="Логотип" class="logo-image" 
+                    style="width: 80px; height: auto; margin-right: 20px;">
+                    <div class="logo" style="margin-right: 20px;">Sofa</div>
+                </div>
+                <div class="buttons" style="display: flex; align-items: center; margin-right: auto;">
+                    <a href="/public/User.html">Главная</a>
+                    <a style="color:black; margin-right: 15px; border-bottom: 2px solid #9c131d;">Восстановление пароля</a>    
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="dropdown" style="position: relative;">
+                    <button id="DropdownMenu" class="dropdown-button">Меню</button>
+                    <div id="dropdownMenu" class="dropdown-content" style="display: none;">
+                        <a @click.prevent="openExitModal" style="margin-right: 15px;">Выход</a>
+                        <a href="/public/Sofa.html">Текущий тираж</a>
+                        <a href="/public/Sofa.html">Избранное</a>
+                        <a href="/public/Sofa.html">Новинки</a>
+                        <a href="/public/Sofa.html">Каталог</a>
+                        <a href="/public/Sofa.html">Оплата</a>
+                        <a href="/public/Sofa.html">Доставка</a>
+                    </div>
+                </div>  
+                <div>
+                    <div style="position: relative; display: inline-block;">
+                        <img src="assets/SearchIcon.png" alt="Поиск" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px;">
+                        <input type="text" id="searchInput" placeholder="Поиск..." style="padding-left: 30px;"/>
+                    </div>
+                </div>
+            </div>
+            <a id="menuToggle" class="menu-button">Меню</a>
+        </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+        <nav>
+            <a style="text-decoration: underline; color:black"><b>Главная</b></a>
+            <a href="/public/Sofa.html">Новинки</a>
+            <a href="/public/Sofa.html">Каталог</a>
+            <a href="/public/Sofa.html">Текущий тираж</a>
+            <a href="/public/Sofa.html">Профиль</a>
+            <a href="/public/Sofa.html">Заказы</a>
+            <a href="/public/Sofa.html">Избранное</a>
+            <a href="/public/Sofa.html">Оплата</a>
+            <a href="/public/Sofa.html">Доставка</a>
+        </nav>
+    </aside>
+
+    <div id="notifications" class="notifications"></div>
+    <main>
+        <div style = "display:flex; justify-content:center">
+            <div class="modal-content">
+                <h2>Смена пароля в Sofa</h2>
+                <form id="RecoveryForm" @submit.prevent="submitRecovery">
+
+                    <label for="password">Пароль</label>
+                    <div class="password-container">
+                        <input :type="isPasswordRecoveryVisible ? 'text' : 'password'" id="RecoveryPassword" required>
+                        <a href="#" @click.prevent="togglePasswordRecoveryVisibility" class="eye-link">
+                            <span v-if="isPasswordRecoveryVisible">👁️</span>
+                            <span v-else>👁️‍🗨️</span>
+                        </a>
+                    </div>
+
+                    <label for="password2">Подтвердите пароль</label>
+                    <div class="password-container">
+                        <input :type="isPasswordRecovery2Visible ? 'text' : 'password'" id="RecoveryPassword2" required>
+                        <a href="#" @click.prevent="togglePasswordRecovery2Visibility" class="eye-link">
+                            <span v-if="isPasswordRecovery2Visible">👁️</span>
+                            <span v-else>👁️‍🗨️</span>
+                        </a>
+                    </div>
+
+                    <button type="submit">Сменить пароль</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sofa. Все права защищены.</p>
+    </footer>
+</div>
+<script src="scripts/Recovery.js"></script>
+</body>
+</html>
