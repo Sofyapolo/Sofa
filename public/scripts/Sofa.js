@@ -110,6 +110,36 @@ new Vue({
     el: '#app',
     data: {
         goods: [],
+        circulationItems: [
+            {
+                image: "assets/картхолдер.png",
+                name: "Картхолдеры",
+                stock: 45,
+                oldPrice: 150,
+                newPrice: 120,
+            },
+            {
+                image: "assets/наклейки.png",
+                name: "Объёмные наклейки",
+                stock: 32,
+                oldPrice: 80,
+                newPrice: 64,
+            },
+            {
+                image: "assets/стенд.png",
+                name: "Стенды с блёстками",
+                stock: 32,
+                oldPrice: 80,
+                newPrice: 64,
+            },
+            {
+                image: "assets/биндер.png",
+                name: "Биндеры",
+                stock: 32,
+                oldPrice: 80,
+                newPrice: 64,
+            },
+        ],
         isMouseDownOnModal: false,
         isMouseDownOnBackdrop: false,
         isUserModalOpen: false,

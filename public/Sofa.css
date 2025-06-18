@@ -369,7 +369,6 @@ form {
     text-align: center;
 }
 
-/* Стиль для всех лейблов в модальном окне */
 .modal-content label {
   color: #1F2937; 
   font-size: 16px;
@@ -537,19 +536,19 @@ input[type="checkbox"]:checked::after {
 }
 
 .card-image-small {
-    width: 50px; /* Размер маленького изображения */
-    height: auto; /* Авто высота для сохранения пропорций */
+    width: 50px;
+    height: auto;
 }
 
 .card-image-large {
-    width: 100px; /* Размер большого изображения */
-    height: auto; /* Авто высота для сохранения пропорций */
+    width: 100px;
+    height: auto;
 }
 
 .placeholder {
-    width: 50px; /* Размер серого квадрата */
-    height: 50px; /* Размер серого квадрата */
-    background-color: #ccc; /* Цвет фона серого квадрата */
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
 }
 
 .PerDataLink {
@@ -676,7 +675,7 @@ input[type="checkbox"]:checked::after {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 5; /* Убедитесь, что кнопка всегда поверх других элементов */
+    z-index: 5;
     padding: 10px 15px;
     background-color: #9c131d;
     color: white;
@@ -1009,7 +1008,7 @@ input:focus {
   display: flex;
   align-items: center; 
   gap: 40px; 
-  padding: 60px 20px;
+  padding: 110px 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1063,4 +1062,185 @@ input:focus {
 #description .order-button:hover {
   background: #7a0f16;
   transform: translateY(-2px);
+}
+
+.circulation-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.circulation-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    text-align: center;
+}
+
+.circulation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.circulation-image-container {
+    /* max-width: 100%;
+    max-height: 100%; */
+    position: relative;
+    height: 210px;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 65px 25px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circulation-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.circulation-content {
+    padding: 0px 25px 25px;
+}
+
+.circulation-card h3 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.circulation-stock {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.circulation-prices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.price-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.price-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.old-price {
+    color: #333;
+    font-size: 18px;
+}
+
+.price-arrow {
+    color: #999;
+    font-size: 20px;
+    align-self: center;
+    line-height: 1;
+}
+
+.new-price {
+    color: #9c131d;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.collective-printing {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.printing-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.printing-content h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+    font-size: 35px;
+}
+
+.printing-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 15px auto;
+    max-width: 1000px;
+}
+
+.benefit-item {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.benefit-item img {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 17px;
+}
+
+.benefit-item p {
+    font-size: 19px;
+    line-height: 1.5;
+    min-height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.printing-content .learn-more-button {
+    padding: 15px 45px;
+    background: #9c131d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    width: fit-content;
+    font-family: 'Manrope-Medium', sans-serif;
+    display: inline-block;
+}
+
+.learn-more-button:hover {
+    background-color: #7a0f16;
+    transform: translateY(-2px);
+}
+
+.learn-more-button:active {
+    transform: translateY(1px);
 }

@@ -76,27 +76,59 @@
     <main>
 
         <div id="description">
-        <div class="text-block">
-            <h1 class="main-title">Коллекты в Китай</h1>
-            <p class="subtitle">Создайте мерч в одной из тысяч<br>типографий на Tao Bao и 1688</p>
-            <button class="order-button">Заказать</button>
-        </div>
-        <div class="image-block">
-            <img src="assets/коллаж.png" alt="Примеры мерча" class="collage-image">
-        </div>
-        </div>
-
-        <!-- Карточки тиража -->
-
-        <!-- <div class="circulation-cards">
-        <div class="circulation-card">
-            <div class="circulation-icon">📌</div>
-            <h3>Картхолдеры</h3>
-            <p>До скидки 15% осталось:</p>
-            <div class="circulation-count">8 шт.</div>
+            <div class="text-block">
+                <h1 class="main-title">Коллекты в Китай</h1>
+                <p class="subtitle">Создайте мерч в одной из тысяч<br>типографий на Tao Bao и 1688</p>
+                <a href="#circulation" class="order-button">Заказать</a>
+            </div>
+            <div class="image-block">
+                <img src="assets/коллаж.png" alt="Примеры мерча" class="collage-image">
             </div>
         </div>
-        </div> -->
+
+        <div class="collective-printing">
+            <div class="printing-content">
+                <h2>Печатайте мерч дешевле с совместными тиражами</h2>
+                <div class="printing-benefits">
+                    <div class="benefit-item">
+                        <img src="assets/group.png" alt="Объединение заказов">
+                        <p>Объединяйте заказы<br>с другими художниками<br>с разных городов</p>
+                    </div>
+                    <div class="benefit-item">
+                        <img src="assets/machine.png" alt="Печать в Китае">
+                        <p>Печатайте мерч в Китае<br>по оптовым ценам</p>
+                    </div>
+                    <div class="benefit-item">
+                        <img src="assets/boxes.png" alt="Доставка">
+                        <p>Получайте заказ индивидуально<br>или объединённой доставкой</p>
+                    </div>
+                </div>
+                <button class="learn-more-button">Узнать больше</button>
+            </div>
+        </div>
+
+         <div class="circulation-cards" id="circulation">
+            <div class="circulation-card" v-for="(item, index) in circulationItems" :key="index">
+                <div class="circulation-image-container">
+                    <img :src="item.image" :alt="item.name" class="circulation-image">
+                </div>
+                <div class="circulation-content text-center">
+                    <h3>{{ item.name }}</h3>
+                    <div class="circulation-stock">Ещё {{ item.stock }} шт</div>
+                    <div class="circulation-prices">
+                        <div class="price-column">
+                            <span class="old-price">{{ item.oldPrice }}Р</span>
+                            <span class="price-label">текущая<br>цена</span>
+                        </div>
+                        <span class="price-arrow">→</span>
+                        <div class="price-column">
+                            <span class="new-price">{{ item.newPrice }}Р</span>
+                            <span class="price-label">цена<br>со скидкой</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div style="margin: 30px;">
             <div class="horiz-button-menu">
